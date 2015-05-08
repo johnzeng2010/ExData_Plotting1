@@ -1,0 +1,6 @@
+library(sqldf)
+df <- read.csv.sql("household_power_consumption.txt", sql='select * from file where Date = "1/2/2007" or Date = "2/2/2007"', sep=";")
+datetime <- strptime(paste(df$Date,df$Time), format="%d/%m/%Y %H:%M:%S")
+png("plot2.png")
+plot(datetime, df$Global_active_power, type="l", xlab="", ylab="Global Active Power (kilowatts)")
+dev.off()
